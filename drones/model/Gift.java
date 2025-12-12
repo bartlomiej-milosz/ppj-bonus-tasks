@@ -23,4 +23,23 @@ public class Gift {
     this.isReadyToBeDelivered = false;
     System.out.printf("Gift contents: ", nameOfContent);
   }
+
+  public float getWeight() {
+    return this.weight;
+  }
+
+  public boolean getIsReadyToBeDelivered() {
+    return this.isReadyToBeDelivered;
+  }
+
+  public void setIsReadyToBeDelivered(boolean isReadyToBeDelivered) {
+    this.isReadyToBeDelivered = isReadyToBeDelivered;
+  }
+
+  @Override
+  public String toString() {
+    return String.format(
+        "GIFT INFO: [Content: %s, Weight: %.2f, Ready to be delivered: %b]",
+        nameOfContent, weight, isReadyToBeDelivered);
+  }
 }
