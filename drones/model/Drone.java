@@ -62,6 +62,14 @@ public class Drone {
     }
   }
 
+  public void chargeDrone(byte batteryLevel) {
+    this.batteryLevel = (byte) Math.min(100, this.batteryLevel + batteryLevel);
+  }
+
+  public boolean canItFly() {
+    return enginePower > weight && batteryLevel > 0;
+  }
+
   public float getWeight() {
     return this.weight;
   }
