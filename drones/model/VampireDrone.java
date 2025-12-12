@@ -32,4 +32,11 @@ class VampireDrone extends Drone {
     this.setBatteryLevel((byte) (this.getBatteryLevel() / 2));
     this.setWeight(this.getWeight() / 2);
   }
+
+  @Override
+  public String toString() {
+    return String.format(
+        "%s VAMPIRE DRONE INFO: [constructor: %s, isDoneBat: %b, isTransformed: %b]",
+        super.toString(), constructor, isDoneBat, isTransformed);
+  }
 }
