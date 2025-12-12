@@ -1,5 +1,6 @@
-package drone;
+package drones;
 
+import drones.model.*;
 import java.util.Arrays;
 
 class Main {

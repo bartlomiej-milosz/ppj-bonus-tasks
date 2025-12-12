@@ -1,6 +1,6 @@
-package drone;
+package drones.utils;
 
-class Utils {
+public class Utils {
   private static int counter = 0;
   private static final short MIN = 100;
   private static final short RANGE = 900;
@@ -14,7 +14,7 @@ class Utils {
    *
    * @return unique integer ID
    */
-  static int generateId() {
+  public static int generateId() {
     return PREFIX * MULTIPLIER + counter++;
   }
 }

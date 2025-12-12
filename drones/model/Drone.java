@@ -1,6 +1,8 @@
-package drone;
+package drones.model;
 
-class Drone {
+import drones.utils.Utils;
+
+public class Drone {
   protected static final String DEFAULT_NAME = "Javanator";
   protected static final float DEFAULT_WEIGHT = 1.8f;
   protected static final float DEFAULT_ENGINE_POWER = 150.0f;
@@ -12,15 +14,15 @@ class Drone {
   private float enginePower; // in kW
   private byte batteryLevel; // in %
 
-  Drone() {
+  public Drone() {
     this(DEFAULT_NAME, DEFAULT_WEIGHT, DEFAULT_ENGINE_POWER, DEFAULT_BATTERY_LEVEL);
   }
 
-  Drone(String name) {
+  public Drone(String name) {
     this(name, DEFAULT_WEIGHT, DEFAULT_ENGINE_POWER, DEFAULT_BATTERY_LEVEL);
   }
 
-  Drone(String name, float weight, float enginePower, byte batteryLevel) {
+  public Drone(String name, float weight, float enginePower, byte batteryLevel) {
     validateObjectCreation(batteryLevel, weight, enginePower);
     this.uniqueId = Utils.generateId();
     this.name = name;
@@ -29,7 +31,7 @@ class Drone {
     this.batteryLevel = batteryLevel;
   }
 
-  boolean checkFlyParameters() {
+  public boolean checkFlyParameters() {
     var isParametersCorrect = enginePower > weight && batteryLevel > 0;
     if (isParametersCorrect) {
       System.out.println("System parameters OK.");
@@ -45,7 +47,7 @@ class Drone {
     return isParametersCorrect;
   }
 
-  void fly(float distance) {
+  public void fly(float distance) {
     if (distance > batteryLevel) {
       System.out.println("Insufficient battery for this flight!");
       return;
@@ -54,7 +56,7 @@ class Drone {
     System.out.printf("Flying... Battery: %d%%\n", batteryLevel);
   }
 
-  void revEngine() {
+  public void revEngine() {
     for (var i = 0; i < enginePower / weight; i++) {
       System.out.println("Vroom!");
     }

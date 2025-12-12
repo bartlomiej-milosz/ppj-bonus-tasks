@@ -1,29 +1,30 @@
-package drone;
+package drones.model;
 
-class RacingDrone extends Drone {
+public class RacingDrone extends Drone {
   private static final String DEFAULT_RACING_TEAM = "unknown";
   private static final byte DEFAULT_POSITION = 0;
 
   private String racingTeam;
   private byte positionInRanking;
 
-  RacingDrone() {
+  public RacingDrone() {
     this(DEFAULT_RACING_TEAM, DEFAULT_POSITION);
   }
 
-  RacingDrone(String racingTeam, byte positionInRanking) {
+  public RacingDrone(String racingTeam, byte positionInRanking) {
     super();
     this.racingTeam = racingTeam;
     this.positionInRanking = positionInRanking;
   }
 
-  RacingDrone(float enginePower) {
+  public RacingDrone(float enginePower) {
     super(DEFAULT_NAME, DEFAULT_WEIGHT, enginePower, DEFAULT_BATTERY_LEVEL);
+    validateObjectCreation(positionInRanking);
     this.racingTeam = DEFAULT_RACING_TEAM;
     this.positionInRanking = DEFAULT_POSITION;
   }
 
-  RacingDrone(
+  public RacingDrone(
       String racingTeam,
       byte positionInRanking,
       String name,
@@ -31,11 +32,12 @@ class RacingDrone extends Drone {
       float enginePower,
       byte batteryLevel) {
     super(name, weight, enginePower, batteryLevel);
+    validateObjectCreation(positionInRanking);
     this.racingTeam = racingTeam;
     this.positionInRanking = positionInRanking;
   }
 
-  static Drone race(Drone[] racers) {
+  public static Drone race(Drone[] racers) {
     if (racers == null || racers.length == 0) {
       throw new IllegalArgumentException("No racers provided");
     }
@@ -46,7 +48,7 @@ class RacingDrone extends Drone {
     return winner;
   }
 
-  static RacingDrone[] sortByPosition(RacingDrone[] racers) {
+  public static RacingDrone[] sortByPosition(RacingDrone[] racers) {
     for (int i = 0; i < racers.length - 1; i++) {
       for (int j = 0; j < racers.length - 1 - i; j++) {
         boolean shouldSwap = false;
@@ -73,7 +75,7 @@ class RacingDrone extends Drone {
   }
 
   @Override
-  void revEngine() {
+  public void revEngine() {
     super.revEngine();
     for (var i = 0; i < super.getEnginePower() / super.getWeight(); i++) {
       System.out.println("ZOOOOOM");
@@ -85,5 +87,11 @@ class RacingDrone extends Drone {
     return String.format(
         "%s RACING DRONE INFO: [team: %s, position: %d]",
         super.toString(), racingTeam, positionInRanking);
+  }
+
+  private void validateObjectCreation(byte positionInRanking) {
+    if (positionInRanking < 0 || positionInRanking > 100) {
+      throw new IllegalArgumentException("Position must be 0-100");
+    }
   }
 }
