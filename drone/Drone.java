@@ -30,7 +30,19 @@ class Drone {
   }
 
   boolean checkFlyParameters() {
-    return enginePower > weight && batteryLevel > 0;
+    var isParametersCorrect = enginePower > weight && batteryLevel > 0;
+    if (isParametersCorrect) {
+      System.out.println("System parameters OK.");
+    } else {
+      var message =
+          enginePower < weight
+              ? "Weigth of this drone is too large for this engine"
+              : batteryLevel < 0
+                  ? "Drone is out of power. Please charge it"
+                  : "Everything looks good.";
+      System.out.println(message);
+    }
+    return isParametersCorrect;
   }
 
   void fly(float distance) {
@@ -65,15 +77,5 @@ class Drone {
     if (batteryLevel < 0 || batteryLevel > 100) {
       throw new IllegalArgumentException("Battery must be 0-100");
     }
-  }
-}
-
-class Main {
-  public static void main(String[] args) {
-    var drone = new Drone("Mosianator");
-    System.out.println(drone);
-    drone.fly(105.0f);
-    drone.fly(97.5f);
-    drone.revEngine();
   }
 }
