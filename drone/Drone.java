@@ -29,6 +29,32 @@ class Drone {
     this.batteryLevel = batteryLevel;
   }
 
+  boolean checkFlyParameters() {
+    return enginePower > weight && batteryLevel > 0;
+  }
+
+  void fly(float distance) {
+    if (distance > batteryLevel) {
+      System.out.println("Insufficient battery for this flight!");
+      return;
+    }
+    batteryLevel -= distance;
+    System.out.printf("Flying... Battery: %d%%\n", batteryLevel);
+  }
+
+  void revEngine() {
+    for (var i = 0; i < enginePower / weight; i++) {
+      System.out.println("Vroom!");
+    }
+  }
+
+  @Override
+  public String toString() {
+    return String.format(
+        "[ID: %d, Name: %s, Weight: %.2f, Engine Power: %.2f, Battery Level: %d%%]",
+        uniqueId, name, weight, enginePower, batteryLevel);
+  }
+
   private void validateObjectCreation(byte batteryLevel, float weight, float enginePower) {
     if (weight <= 0) {
       throw new IllegalArgumentException("Weight must be positive");
@@ -40,16 +66,14 @@ class Drone {
       throw new IllegalArgumentException("Battery must be 0-100");
     }
   }
+}
 
-  @Override
-  public String toString() {
-    return String.format(
-        "[ID: %d, Name: %s, Weight: %.2f, Engine Power: %.2f, Battery Level: %d%%]",
-        uniqueId, name, weight, enginePower, batteryLevel);
-  }
-
+class Main {
   public static void main(String[] args) {
     var drone = new Drone("Mosianator");
-    IO.println(drone);
+    System.out.println(drone);
+    drone.fly(105.0f);
+    drone.fly(97.5f);
+    drone.revEngine();
   }
 }
