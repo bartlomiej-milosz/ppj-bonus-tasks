@@ -12,6 +12,21 @@ class Main {
     showcaseRacingDrone();
     System.out.println(DIVIDER);
     showcaseVampireDrone();
+    System.out.println(DIVIDER);
+    showcaseChristmasDrone();
+  }
+
+  private static void showcaseChristmasDrone() {
+    var cheetosGift = new Gift("A year's supply of Cheetos", 10.5f);
+    var chocolote = new Gift("Chocolate bar", 0.1f);
+    var giftForMisbihavedChild = new Gift();
+    var gifts = new Gift[]{cheetosGift, chocolote, giftForMisbihavedChild};
+    
+    var drone = new ChristmasDrone();
+    for (var gift : gifts) {
+      drone.setGift(gift);
+      drone.deliverGift();
+    }
   }
 
   private static void showcaseVampireDrone() {

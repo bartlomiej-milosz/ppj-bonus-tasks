@@ -3,6 +3,8 @@ package drones.model;
 public class ChristmasDrone extends Drone {
   private Gift gift;
 
+  public ChristmasDrone() {}
+
   public ChristmasDrone(Gift gift) {
     this.gift = gift;
   }
@@ -10,11 +12,15 @@ public class ChristmasDrone extends Drone {
   public void deliverGift() {
     var errors = handleDeliveryErrors();
     if (errors.length() > 0) {
-      System.out.printf("Failed delivery: %s\n" + errors.trim());
+      System.out.printf("Failed delivery: %s\n", errors.trim());
       return;
     }
     System.out.printf("Delivery completed: %s\n", gift);
     this.gift = null;
+  }
+
+  public void setGift(Gift gift) {
+    this.gift = gift;
   }
 
   private String handleDeliveryErrors() {
@@ -22,14 +28,12 @@ public class ChristmasDrone extends Drone {
     if (gift == null) {
       errors.append("Gift is empty. ");
     }
-    if (gift != null && !gift.getIsReadyToBeDelivered()) {
+    if (!gift.getIsReadyToBeDelivered()) {
       errors.append("Gift is not ready. ");
     }
-    if (gift != null) {
-      boolean isEnginePowerSufficient = this.getWeight() + gift.getWeight() < this.getEnginePower();
-      if (!isEnginePowerSufficient) {
-        errors.append("Engine too weak. ");
-      }
+    boolean isOverweight = this.getWeight() + gift.getWeight() > this.getEnginePower();
+    if (isOverweight) {
+      errors.append("Engine too weak. ");
     }
     return errors.toString();
   }

@@ -5,6 +5,13 @@ public class Gift {
   private float weight;
   private boolean isReadyToBeDelivered;
 
+  /* Empty gift */
+  public Gift() {
+    this.nameOfContent = null;
+    this.weight = 0.0f;
+    this.isReadyToBeDelivered = false;
+  }
+
   public Gift(String nameOfContent, float weight) {
     this(nameOfContent, weight, true);
   }
