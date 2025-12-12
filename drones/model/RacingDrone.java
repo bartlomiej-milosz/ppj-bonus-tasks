@@ -4,24 +4,17 @@ public class RacingDrone extends Drone {
   private static final String DEFAULT_RACING_TEAM = "unknown";
   private static final byte DEFAULT_POSITION = 0;
 
-  private String racingTeam;
-  private byte positionInRanking;
-
-  public RacingDrone() {
-    this(DEFAULT_RACING_TEAM, DEFAULT_POSITION);
-  }
+  private String racingTeam = DEFAULT_RACING_TEAM;
+  private byte positionInRanking = DEFAULT_POSITION;
 
   public RacingDrone(String racingTeam, byte positionInRanking) {
-    super();
+    validateObjectCreation(positionInRanking);
     this.racingTeam = racingTeam;
     this.positionInRanking = positionInRanking;
   }
 
   public RacingDrone(float enginePower) {
     super(DEFAULT_NAME, DEFAULT_WEIGHT, enginePower, DEFAULT_BATTERY_LEVEL);
-    validateObjectCreation(positionInRanking);
-    this.racingTeam = DEFAULT_RACING_TEAM;
-    this.positionInRanking = DEFAULT_POSITION;
   }
 
   public RacingDrone(
@@ -77,7 +70,7 @@ public class RacingDrone extends Drone {
   @Override
   public void revEngine() {
     super.revEngine();
-    for (var i = 0; i < super.getEnginePower() / super.getWeight(); i++) {
+    for (var i = 0; i < this.getEnginePower() / this.getWeight(); i++) {
       System.out.println("ZOOOOOM");
     }
   }

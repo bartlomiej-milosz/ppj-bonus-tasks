@@ -70,6 +70,18 @@ public class Drone {
     return this.enginePower;
   }
 
+  public byte getBatteryLevel() {
+    return this.batteryLevel;
+  }
+
+  public void setWeight(float weight) {
+    this.weight = weight;
+  }
+
+  public void setBatteryLevel(byte batteryLevel) {
+    this.batteryLevel = batteryLevel;
+  }
+
   @Override
   public String toString() {
     return String.format(
