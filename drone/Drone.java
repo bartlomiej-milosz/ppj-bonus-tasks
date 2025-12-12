@@ -1,10 +1,10 @@
 package drone;
 
 class Drone {
-  private static final String DEFAULT_NAME = "Javanator";
-  private static final float DEFAULT_WEIGHT = 1.8f;
-  private static final float DEFAULT_ENGINE_POWER = 150.0f;
-  private static final byte DEFAULT_BATTERY_LEVEL = 100;
+  protected static final String DEFAULT_NAME = "Javanator";
+  protected static final float DEFAULT_WEIGHT = 1.8f;
+  protected static final float DEFAULT_ENGINE_POWER = 150.0f;
+  protected static final byte DEFAULT_BATTERY_LEVEL = 100;
 
   private int uniqueId;
   private String name;
@@ -60,10 +60,18 @@ class Drone {
     }
   }
 
+  public float getWeight() {
+    return this.weight;
+  }
+
+  public float getEnginePower() {
+    return this.enginePower;
+  }
+
   @Override
   public String toString() {
     return String.format(
-        "[ID: %d, Name: %s, Weight: %.2f, Engine Power: %.2f, Battery Level: %d%%]",
+        "GENERAL INFO: [ID: %d, Name: %s, Weight: %.2f, Engine Power: %.2f, Battery Level: %d%%]",
         uniqueId, name, weight, enginePower, batteryLevel);
   }
 
