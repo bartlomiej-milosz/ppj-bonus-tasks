@@ -1,6 +1,6 @@
 package drones.model;
 
-class VampireDrone extends Drone {
+public class VampireDrone extends Drone {
   private static final String DEFAULT_CONSTRUCTOR = "Bram Stoker";
 
   private String constructor = DEFAULT_CONSTRUCTOR;
@@ -8,7 +8,8 @@ class VampireDrone extends Drone {
   private boolean isTransformed = false;
 
   public VampireDrone(boolean isTransformed) {
-    this(false, isTransformed);
+    super("Vampire Drone", DEFAULT_WEIGHT, DEFAULT_ENGINE_POWER, (byte) 25);
+    this.isTransformed = isTransformed;
   }
 
   public VampireDrone(boolean isDoneBat, boolean isTransformed) {

@@ -14,7 +14,7 @@ public class RacingDrone extends Drone {
   }
 
   public RacingDrone(float enginePower) {
-    super(DEFAULT_NAME, DEFAULT_WEIGHT, enginePower, DEFAULT_BATTERY_LEVEL);
+    super("Racing Drone", DEFAULT_WEIGHT, enginePower, DEFAULT_BATTERY_LEVEL);
   }
 
   public RacingDrone(

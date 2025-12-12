@@ -4,9 +4,32 @@ import drones.model.*;
 import java.util.Arrays;
 
 class Main {
+  private static final String DIVIDER = "\n########################\n";
+
   public static void main(String[] args) {
-    // showcaseDroneClass();
+    showcaseDroneClass();
+    System.out.println(DIVIDER);
     showcaseRacingDrone();
+    System.out.println(DIVIDER);
+    showcaseVampireDrone();
+  }
+
+  private static void showcaseVampireDrone() {
+    var drone = new Drone();
+    var drainingDrone = new VampireDrone(false);
+    var transformedDrone = new VampireDrone(true);
+
+    transformedDrone.drainEnergy(drone);
+
+    System.out.printf("Generic Drone battery level: %d\n", drone.getBatteryLevel());
+    System.out.printf("Vampire Drone battery level: %d\n", drainingDrone.getBatteryLevel());
+    drainingDrone.drainEnergy(drone);
+    System.out.println("After draining...");
+    System.out.printf("Generic Drone battery level: %d\n", drone.getBatteryLevel());
+    System.out.printf("Vampire Drone battery level: %d\n", drainingDrone.getBatteryLevel());
+
+    drainingDrone.turnIntoBatDrone();
+    drainingDrone.drainEnergy(drone);
   }
 
   private static void showcaseRacingDrone() {
@@ -16,6 +39,7 @@ class Main {
         };
     var winner = RacingDrone.race(racers);
     System.out.println(winner);
+    racers[0].setWeight(25.0f);
     racers[0].revEngine();
 
     var teamRacers =
@@ -38,7 +62,7 @@ class Main {
     var defaultDrone = new Drone();
     System.out.println(defaultDrone);
     var res = defaultDrone.checkFlyParameters();
-    System.out.println(res);
+    System.out.printf("Are the parameters OK?: %b\n", res);
     defaultDrone.fly(104.0f);
     defaultDrone.fly(96.5f);
   }

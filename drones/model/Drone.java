@@ -3,7 +3,7 @@ package drones.model;
 import drones.utils.Utils;
 
 public class Drone {
-  protected static final String DEFAULT_NAME = "Javanator";
+  protected static final String DEFAULT_NAME = "Generic Drone";
   protected static final float DEFAULT_WEIGHT = 1.8f;
   protected static final float DEFAULT_ENGINE_POWER = 150.0f;
   protected static final byte DEFAULT_BATTERY_LEVEL = 100;
