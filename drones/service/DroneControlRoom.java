@@ -2,6 +2,7 @@ package drones.service;
 
 import drones.model.Drone;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /* i used streams for variety */
@@ -14,36 +15,28 @@ public class DroneControlRoom {
   public DroneControlRoom() {}
 
   public DroneControlRoom(List<Drone> drones) {
-    this.drones = drones;
+    this.drones = new ArrayList<>(drones);
   }
 
   public Drone findMostPowerful() {
-    if (drones.isEmpty()) {
-      throw new IllegalStateException("No drones available");
-    }
+    validateNotEmpty();
     return findMostPowerfulRecursive(0, drones.get(0));
   }
 
   public int countDronesThatCanFly() {
-    if (drones.isEmpty()) {
-      throw new IllegalStateException("No drones available");
-    }
-    return (int) drones.stream().filter(drone -> drone.canItFly()).count();
+    validateNotEmpty();
+    return (int) drones.stream().filter(Drone::canItFly).count();
   }
 
   public List<Drone> sortAllDrones() {
-    if (drones.isEmpty()) {
-      throw new IllegalStateException("No drones available");
-    }
+    validateNotEmpty();
     return drones.stream()
-        .sorted((d1, d2) -> Float.compare(d1.getWeight(), d2.getWeight()))
+        .sorted(Comparator.comparing(Drone::getWeight))
         .toList();
   }
 
   public void chargeAllDrones() {
-    if (drones.isEmpty()) {
-      throw new IllegalStateException("No drones available");
-    }
+    validateNotEmpty();
     drones.forEach(drone -> drone.chargeDrone((byte) CHARGE_AMOUNT));
   }
 
@@ -56,6 +49,10 @@ public class DroneControlRoom {
 
   public void setDrones(List<Drone> drones) {
     this.drones = drones;
+  }
+
+  public List<Drone> getDrones() {
+    return this.drones;
   }
 
   @Override
@@ -72,5 +69,11 @@ public class DroneControlRoom {
     var current = drones.get(index);
     var newMax = current.getEnginePower() > currentMax.getEnginePower() ? current : currentMax;
     return findMostPowerfulRecursive(index + 1, newMax);
+  }
+
+  private void validateNotEmpty() {
+    if (drones.isEmpty()) {
+      throw new IllegalStateException("No drones available");
+    }
   }
 }

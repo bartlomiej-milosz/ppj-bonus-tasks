@@ -1,7 +1,9 @@
 package drones;
 
 import drones.model.*;
+import drones.service.*;
 import java.util.Arrays;
+import java.util.List;
 
 class Main {
   private static final String DIVIDER = "\n########################\n";
@@ -13,7 +15,28 @@ class Main {
     System.out.println(DIVIDER);
     showcaseVampireDrone();
     System.out.println(DIVIDER);
-    showcaseChristmasDrone();
+    showcaseChristmasDrone(); 
+    System.out.println(DIVIDER);
+    showcaseDroneControlRoom();
+  }
+
+  private static void showcaseDroneControlRoom() {
+    var droneService = new DroneControlRoom(List.of(
+        new Drone("A", 2.1f, 150.5f, (byte)85),
+        new Drone("B", 1.8f, 200.0f, (byte)92),
+        new Drone("C", 3.2f, 120.0f, (byte)67),
+        new Drone("D", 2.5f, 175.5f, (byte)100)
+    ));
+    droneService.addNewDrone(new Drone("E", 4.1f, 95.0f, (byte)43));
+
+    droneService.getDrones().forEach(System.out::println);
+    System.out.println(DIVIDER);
+    droneService.chargeAllDrones();
+    droneService.getDrones().forEach(System.out::println);
+    System.out.println(DIVIDER);
+
+    System.out.printf("Drones that can fly: %s\n", droneService.countDronesThatCanFly());
+    System.out.printf("Most powerfull drone: %s\n", droneService.findMostPowerful());
   }
 
   private static void showcaseChristmasDrone() {

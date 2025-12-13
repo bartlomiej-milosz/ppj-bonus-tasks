@@ -3,7 +3,7 @@ package drones.model;
 public class VampireDrone extends Drone {
   private static final String DEFAULT_CONSTRUCTOR = "Bram Stoker";
 
-  private String constructor = DEFAULT_CONSTRUCTOR;
+  private final String constructor = DEFAULT_CONSTRUCTOR;
   private boolean isDoneBat = false;
   private boolean isTransformed = false;
 
