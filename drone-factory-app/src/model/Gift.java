@@ -1,4 +1,4 @@
-package drones.model;
+package model;
 
 public class Gift {
   private String nameOfContent;

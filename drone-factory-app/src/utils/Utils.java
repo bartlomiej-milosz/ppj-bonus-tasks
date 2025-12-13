@@ -1,4 +1,4 @@
-package drones.utils;
+package utils;
 
 public class Utils {
   private static int counter = 0;

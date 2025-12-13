@@ -1,4 +1,4 @@
-package drones.model;
+package model;
 
 public class ChristmasDrone extends Drone {
   private Gift gift;

@@ -1,9 +1,7 @@
-package drones;
-
-import drones.model.*;
-import drones.service.*;
 import java.util.Arrays;
 import java.util.List;
+import model.*;
+import service.*;
 
 class Main {
   private static final String DIVIDER = "\n########################\n";

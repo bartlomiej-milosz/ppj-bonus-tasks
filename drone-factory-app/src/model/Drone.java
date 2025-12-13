@@ -1,6 +1,6 @@
-package drones.model;
+package model;
 
-import drones.utils.Utils;
+import utils.Utils;
 
 public class Drone {
   protected static final String DEFAULT_NAME = "Generic Drone";

@@ -1,9 +1,9 @@
-package drones.service;
+package service;
 
-import drones.model.Drone;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import model.Drone;
 
 /* i used streams for variety */
 public class DroneControlRoom {

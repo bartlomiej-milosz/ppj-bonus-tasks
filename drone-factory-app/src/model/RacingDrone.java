@@ -1,4 +1,4 @@
-package drones.model;
+package model;
 
 public class RacingDrone extends Drone {
   private static final String DEFAULT_RACING_TEAM = "unknown";
