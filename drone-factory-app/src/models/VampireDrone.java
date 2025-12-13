@@ -1,4 +1,4 @@
-package model;
+package models;
 
 public class VampireDrone extends Drone {
   private static final String DEFAULT_CONSTRUCTOR = "Bram Stoker";

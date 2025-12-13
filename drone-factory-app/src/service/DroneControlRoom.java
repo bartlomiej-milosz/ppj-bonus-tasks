@@ -3,7 +3,7 @@ package service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import model.Drone;
+import models.Drone;
 
 /* i used streams for variety */
 public class DroneControlRoom {

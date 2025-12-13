@@ -1,6 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
-import model.*;
+import models.*;
 import service.*;
 
 class Main {
