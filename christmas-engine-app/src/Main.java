@@ -8,10 +8,10 @@ class Main {
     var giftList =
         new ArrayList<>(List.of(new Gift("A", 1.25f), new Gift("B", 1.25f), new Gift("C", 1.25f)));
     var engine = new ChristmasEngine(giftList);
-    System.out.println(engine.getGiftCounter());
+    System.out.println(engine.countGifts());
     
     giftList.add(new Gift("D", 1.5f));
     engine = new ChristmasEngine(giftList);
-    System.out.println(engine.getGiftCounter());
+    System.out.println(engine.countGifts());
   }
 }

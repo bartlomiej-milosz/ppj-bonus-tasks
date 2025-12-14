@@ -49,7 +49,7 @@ public class ChristmasEngine {
     increaseGiftCounter();
   }
 
-  public void createGifts(String[] giftNames, int[] giftWeights) {
+  public void createGifts(String[] giftNames, float[] giftWeights) {
     if (giftNames.length != giftWeights.length) {
       throw new IllegalArgumentException("Arrays must have same length");
     }
@@ -58,15 +58,15 @@ public class ChristmasEngine {
     }
   }
 
-  public int getGiftCounter() {
-    return giftCounter;
+  public List<Gift> getGiftList() {
+    return this.giftList;
   }
 
   public float countAverageWeight() {
     if (giftList.isEmpty()) return 0.0f;
-    var sum = 0;
+    var sum = 0.0f;
     for (var gift : this.giftList) {
-      sum += gift.getWeight();
+      sum += gift.weight();
     }
     return sum / giftList.size();
   }
