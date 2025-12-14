@@ -23,6 +23,11 @@ public class ChristmasDrone extends Drone {
     this.gift = gift;
   }
 
+  @Override
+  public String toString() {
+    return String.format("%s CHRISTMAS DRONE INFO: [Gift: %s]", super.toString(), gift);
+  }
+
   private String handleDeliveryErrors() {
     var errors = new StringBuilder();
     if (gift == null) {

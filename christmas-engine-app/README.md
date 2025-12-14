@@ -1,4 +1,4 @@
-Running `christmas-engine-app` cmd:
+Run `christmas-engine-app` cmd:
 
 ```bash
 bash run.sh

@@ -37,7 +37,7 @@ public class VampireDrone extends Drone {
   @Override
   public String toString() {
     return String.format(
-        "%s VAMPIRE DRONE INFO: [constructor: %s, isDoneBat: %b, isTransformed: %b]",
+        "%s VAMPIRE DRONE INFO: [Constructor: %s, isDoneBat: %b, isTransformed: %b]",
         super.toString(), constructor, isDoneBat, isTransformed);
   }
 }

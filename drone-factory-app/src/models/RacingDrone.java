@@ -78,7 +78,7 @@ public class RacingDrone extends Drone {
   @Override
   public String toString() {
     return String.format(
-        "%s RACING DRONE INFO: [team: %s, position: %d]",
+        "%s RACING DRONE INFO: [Team: %s, Position: %d]",
         super.toString(), racingTeam, positionInRanking);
   }
 
