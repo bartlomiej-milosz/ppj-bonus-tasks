@@ -9,4 +9,7 @@ public class Gift {
     this.weight = weight;
   }
 
+  public float getWeight() {
+    return this.weight;
+  }
 }

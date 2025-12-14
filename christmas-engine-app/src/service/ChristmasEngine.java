@@ -4,22 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Gift;
 
-/*
-  -showName() - prints out name of the factory
-	-countGifts() - returns int amount of all created gifts using this Class
-	-createGift(String giftContent,weight) - adds gift to array of gifts in ChristmassEngine
-	-createGift() - adds gift to array of gifts in ChristmasEngine. Name of the gift is randomly choosen from: [Car,Doll,Ball] and random weight between 1 and 10.
-	-createGift(String giftContent) - adds gift (with default wieight =5) to array of gifts in ChristmasEngine
-	-createGifts(String[] names, int[] weights) - adds multiple gifts to array of gifts in ChristmasEngine
-	-countAverageWeight() - returns average weight of gifts.
-*/
 public class ChristmasEngine {
   private static final String DEFAULT_FACTORY_NAME = "Default Factory";
+  private static final float DEFAULT_WEIGHT = 5.0f;
 
   private static int giftCounter = 0;
 
-  private String factoryName = DEFAULT_FACTORY_NAME;
+  private String factoryName;
   private List<Gift> giftList = new ArrayList<>();
+
+  public ChristmasEngine(List<Gift> giftList) {
+    this(DEFAULT_FACTORY_NAME, giftList);
+  }
 
   public ChristmasEngine(String factoryName, List<Gift> giftList) {
     if (!giftList.isEmpty()) giftCounter += giftList.size();
@@ -36,17 +32,43 @@ public class ChristmasEngine {
   }
 
   public void createGift() {
-    final int MIN_WEIGHT = 1;
-    final int MAX_WEIGHT = 10;
+    final var MIN_WEIGHT = 1;
+    final var MAX_WEIGHT = 10;
     var randomGiftList = new String[] {"Car", "Doll", "Ball"};
     var randomGiftIndex = (int) (Math.random() * (randomGiftList.length));
     var randomWeight = (float) (Math.random() * (MAX_WEIGHT - MIN_WEIGHT) + MIN_WEIGHT);
     this.createGift(randomGiftList[randomGiftIndex], randomWeight);
   }
 
+  public void createGift(String giftContent) {
+    this.createGift(giftContent, DEFAULT_WEIGHT);
+  }
+
   public void createGift(String giftContent, float weight) {
     this.giftList.add(new Gift(giftContent, weight));
     increaseGiftCounter();
+  }
+
+  public void createGifts(String[] giftNames, int[] giftWeights) {
+    if (giftNames.length != giftWeights.length) {
+      throw new IllegalArgumentException("Arrays must have same length");
+    }
+    for (var i = 0; i < giftNames.length; i++) {
+      this.createGift(giftNames[i], giftWeights[i]);
+    }
+  }
+
+  public int getGiftCounter() {
+    return giftCounter;
+  }
+
+  public float countAverageWeight() {
+    if (giftList.isEmpty()) return 0.0f;
+    var sum = 0;
+    for (var gift : this.giftList) {
+      sum += gift.getWeight();
+    }
+    return sum / giftList.size();
   }
 
   private void increaseGiftCounter() {
