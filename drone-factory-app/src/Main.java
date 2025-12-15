@@ -13,19 +13,47 @@ class Main {
     System.out.println(DIVIDER);
     showcaseVampireDrone();
     System.out.println(DIVIDER);
-    showcaseChristmasDrone(); 
+    showcaseChristmasDrone();
     System.out.println(DIVIDER);
     showcaseDroneControlRoom();
+    System.out.println(DIVIDER);
+    showcaseSpyDrone();
+  }
+
+  private static void showcaseSpyDrone() {
+    var spyDrone = new SpyDrone();
+    System.out.println(spyDrone);
+    System.out.println();
+
+    spyDrone.collectData("Enemy position coordinates");
+    System.out.println();
+
+    spyDrone.toggleStealthMode();
+    spyDrone.collectData("Secret documents");
+    spyDrone.collectData("Communication logs");
+    System.out.println();
+
+    spyDrone.transmitReport();
+    System.out.println();
+
+    System.out.printf("Current stealth level: %d%%\n", spyDrone.getStealthLevel());
+    spyDrone.chargeStealthLevel();
+    System.out.printf("Stealth level after charging: %d%%\n", spyDrone.getStealthLevel());
+    System.out.println();
+
+    spyDrone.toggleStealthMode();
+    System.out.println(spyDrone);
   }
 
   private static void showcaseDroneControlRoom() {
-    var droneService = new DroneControlRoom(List.of(
-        new Drone("A", 2.1f, 150.5f, (byte)85),
-        new Drone("B", 1.8f, 200.0f, (byte)92),
-        new Drone("C", 3.2f, 120.0f, (byte)67),
-        new Drone("D", 2.5f, 175.5f, (byte)100)
-    ));
-    droneService.addNewDrone(new Drone("E", 4.1f, 95.0f, (byte)43));
+    var droneService =
+        new DroneControlRoom(
+            List.of(
+                new Drone("A", 2.1f, 150.5f, (byte) 85),
+                new Drone("B", 1.8f, 200.0f, (byte) 92),
+                new Drone("C", 3.2f, 120.0f, (byte) 67),
+                new Drone("D", 2.5f, 175.5f, (byte) 100)));
+    droneService.addNewDrone(new Drone("E", 4.1f, 95.0f, (byte) 43));
 
     droneService.getDrones().forEach(System.out::println);
     System.out.println(DIVIDER);
@@ -41,8 +69,8 @@ class Main {
     var cheetosGift = new Gift("A year's supply of Cheetos", 10.5f);
     var chocolote = new Gift("Chocolate bar", 0.1f);
     var giftForMisbihavedChild = new Gift();
-    var gifts = new Gift[]{cheetosGift, chocolote, giftForMisbihavedChild};
-    
+    var gifts = new Gift[] {cheetosGift, chocolote, giftForMisbihavedChild};
+
     var drone = new ChristmasDrone();
     for (var gift : gifts) {
       drone.setGift(gift);
